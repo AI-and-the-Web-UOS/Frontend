@@ -1,9 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <title>Results</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.css') }}">
+    <title>Findo</title>
+    <style>
+        .two-line-truncate {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+    </style>
 </head>
 <body>
-    <h1>Suchergebnisse für "{{ search_term }}"</h1>
+    <nav class="navbar navbar-expand navbar-light bg-light mb-4">
+        <div class="d-flex justify-content-start align-items-center ml-auto px-2">
+            <img src="{{ url_for('static', filename='logo_little.png') }}" alt="Logo" class="d-inline-block align-top mr-auto ml-0">
+        </div>
+    </nav>
+    <div class="container d-flex justify-content-start align-items-center flex-column pt-2" style="max-height: 100vh;">
+        <div class="container d-flex justify-content-center align-items-start flex-column w-50 overflow-y-scroll overflow-x-hidden">
+            <h2 class="mb-5">Results for "{{search_text}}"</h2>
+            {% if data %}
+                {% for item in data %}
+                    <h4><a href="{{ item.website}}" target="_blank">{{item.title}}</a></h4>
+                    <p class="two-line-truncate">{{item.content}}</p>
+                {% endfor %}
+                </ul>
+            {% else %}
+            <p>No results found.</p>
+            {% endif %}
+        </div>
+
+    </div>
+
 </body>
 </html>
