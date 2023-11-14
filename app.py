@@ -1,10 +1,12 @@
 from flask import Flask, render_template, request, redirect, url_for
 from sent2vec.vectorizer import Vectorizer
 import requests
+from embedding import EmbeddingManager
 
 app = Flask(__name__)
 
 URL = "http://localhost:5001/search"
+embeddingManager = EmbeddingManager()
 
 
 def search_embedding(search_term):
@@ -52,11 +54,15 @@ def results(search_term):
     :return: Renders the 'results.html' template with search results.
     """
 
-    vector = search_embedding(search_term)  # Get the vector representation of the search term
+    embeddingManager.add_query(search_term)
+    while search_term not in embeddingManager.result_dict.keys():
+        pass
+
+    # vector = search_embedding(search_term)  # Get the vector representation of the search term
 
     # Prepare data to be sent to the search API
     data = {
-        "Vector": vector
+        "Vector": embeddingManager.result_dict[search_term]
     }
 
     response = requests.get(URL, json=data)  # Send a GET request to the search API with the vector data
