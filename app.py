@@ -62,6 +62,7 @@ def results(search_term):
 
     # Prepare data to be sent to the search API
     data = {
+        # "Vector": vector
         "Vector": embeddingManager.result_dict[search_term]
     }
 

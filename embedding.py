@@ -17,7 +17,9 @@ class EmbeddingManager:
     def convert_query(self, query):
         with self.lock:
             self.vectorizer.run([query])
-            self.result_dict[query] = self.vectorizer.vectors[0].tolist()  # Store the result in the dictionary
+            vector = self.vectorizer.vectors[0].tolist()
+            self.result_dict[query] = vector  # Store the result in the dictionary
+            self.vectorizer.vectors.pop(0)
             del self.query_dict[query]  # Remove the query from the conversion dictionary
 
     def run(self):
