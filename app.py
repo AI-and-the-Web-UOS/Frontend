@@ -1,11 +1,12 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, jsonify
 from sent2vec.vectorizer import Vectorizer
 import requests
 from embedding import EmbeddingManager
 
 app = Flask(__name__)
 
-URL = "http://localhost:5001/search"
+URL_SEARCH = "http://localhost:5001/search"
+URL_ADDVIEW = "http://localhost:5001/addView"
 embeddingManager = EmbeddingManager()
 
 
@@ -41,7 +42,12 @@ def home():
     :return: Renders the 'search.html' template.
     """
 
-    return render_template('search.html')
+    error = None
+
+    if 'error' in request.args:  # Check if an error should be displayed
+        error = request.args['error']
+
+    return render_template('search.html', error=error)
 
 
 @app.route('/results/<search_term>')
@@ -66,17 +72,19 @@ def results(search_term):
         "Vector": embeddingManager.result_dict[search_term]
     }
 
-    response = requests.get(URL, json=data)  # Send a GET request to the search API with the vector data
-    result = response.json()  # Parse the JSON response from the search API
-    data = result["results"]  # Extract the search results from the API response
-
-    # Check if the API request was successful (status code 200)
-    if response.status_code == 200:
+    try:
+        response = requests.get(URL_SEARCH, json=data)  # Send a GET request to the search API with the vector data
+        result = response.json()  # Parse the JSON response from the search API
+        data = result["results"]  # Extract the search results from the API response
+        print(search_term)
         # Render the results page template with the search text and data
         return render_template('results.html', search_text=search_term, data=data)
-    else:
-        # If there was an error with the API request, redirect back to the search page
-        return render_template('search.html')
+    except Exception as e:
+        print(f"An error occurred: {e}")
+        return render_template('results.html', search_text=search_term, data=None)
+
+
+
 
 
 @app.route('/submit', methods=['POST'])
@@ -92,9 +100,31 @@ def submit():
 
     # Check if the search text is empty and redirect to the appropriate template
     if not search_text:
-        return redirect(url_for('index', error='Bitte gib einen Suchtext ein!'))
+        return redirect(url_for('home', error='Please enter a search term!'))
 
     return redirect(url_for('results', search_term=search_text))
+
+@app.route('/addView', methods=['POST'])
+def add_view():
+    """
+    This function acts like a middleware for transmitting request from html template to search server
+
+    :return: request status
+    """
+
+    # Get the JSON data from the request
+    data = request.get_json()
+
+    if not data:
+        return jsonify({'error': 'No JSON data provided'}), 400
+
+    # Send request to search server that given url has been clicked by user
+    try:
+        requests.post(URL_ADDVIEW, json=data)
+    except Exception as e:
+        print(f"An error occurred: {e}")
+
+    return "", 200
 
 
 if __name__ == '__main__':

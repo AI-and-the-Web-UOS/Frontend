@@ -17,8 +17,12 @@
             <!-- Input group for styling and layout -->
             <div class="input-group">
                 <!-- Search input with specific Bootstrap classes for styling -->
-                <input type="text" name="search_text" class="form-control rounded" id="search-input" placeholder="Search the web..." style="border: 1px solid #808080; border-radius: 15px; min-width: 30vw;">
+                <input type="text" name="search_text" class="form-control rounded" id="search-input" placeholder="Search the web..." style="border: 1px solid #808080; border-radius: 15px; min-width: 30vw; margin-bottom: 4px;">
             </div>
+            <!-- Display error if there is one -->
+            {% if error %}
+            <p class="text-danger font-weight-bold text-center">{{ error }}</p>
+            {% endif %}
         </form>
     </div>
 </body>
