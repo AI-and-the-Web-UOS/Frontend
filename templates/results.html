@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <!-- Include Bootstrap CSS from the static directory -->
     <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.css') }}">
+    <!-- Set the title of the HTML page -->
     <title>Findo</title>
+    <!-- Define a custom style for truncating text to two lines -->
     <style>
         .two-line-truncate {
             display: -webkit-box;
@@ -13,25 +16,38 @@
     </style>
 </head>
 <body>
+    <!-- Navbar with a light background, margin at the bottom -->
     <nav class="navbar navbar-expand navbar-light bg-light mb-4">
+        <!-- Container for the logo, aligned to the start (left) -->
         <div class="d-flex justify-content-start align-items-center ml-auto px-2">
+            <!-- Logo image, with specific Bootstrap classes for alignment -->
             <img src="{{ url_for('static', filename='logo_little.png') }}" alt="Logo" class="d-inline-block align-top mr-auto ml-0">
         </div>
     </nav>
+
+    <!-- Main container with flexible and centered content -->
     <div class="container d-flex justify-content-start align-items-center flex-column pt-2" style="max-height: 100vh;">
+        <!-- Sub-container for search results, with specific Bootstrap classes -->
         <div class="container d-flex justify-content-center align-items-start flex-column w-50 overflow-y-scroll overflow-x-hidden">
+            <!-- Heading for search results, using the search text as a placeholder -->
             <h2 class="mb-5">Results for "{{search_text}}"</h2>
+
+            <!-- Check if there are search results -->
             {% if data %}
+                <!-- Loop through each search result item -->
                 {% for item in data %}
-                    <h4><a href="{{ item.website}}" target="_blank">{{item.title}}</a></h4>
-                    <p class="two-line-truncate">{{item.content}}</p>
+                    <!-- Display title as a clickable link opening in a new tab -->
+                    <h4><a href="{{ item.website }}" target="_blank">{{ item.title }}</a></h4>
+                    <!-- Display content with text truncation to two lines -->
+                    <p class="two-line-truncate">{{ item.content }}</p>
                 {% endfor %}
+                <!-- Close the unordered list (not present in the code) -->
                 </ul>
             {% else %}
-            <p>No results found.</p>
+                <!-- Display a message when no results are found -->
+                <p>No results found.</p>
             {% endif %}
         </div>
-
     </div>
 
 </body>

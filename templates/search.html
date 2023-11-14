@@ -1,14 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Include Bootstrap CSS from the static directory -->
     <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.css') }}">
+    <!-- Set the title of the HTML page -->
     <title>Findo</title>
 </head>
 <body>
+    <!-- Main container centered both horizontally and vertically -->
     <div class="container d-flex justify-content-center align-items-center flex-column" style="min-height: 100vh;">
-        <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo-Beschreibung" class="mb-5">
-        <form  action="{{ url_for('submit') }}" method="post">
+        <!-- Findo logo with a margin at the bottom -->
+        <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo Description" class="mb-5">
+
+        <!-- Form for submitting search queries -->
+        <form action="{{ url_for('submit') }}" method="post">
+            <!-- Input group for styling and layout -->
             <div class="input-group">
+                <!-- Search input with specific Bootstrap classes for styling -->
                 <input type="text" name="search_text" class="form-control rounded" id="search-input" placeholder="Search the web..." style="border: 1px solid #808080; border-radius: 15px; min-width: 30vw;">
             </div>
         </form>
