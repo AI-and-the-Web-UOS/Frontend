@@ -18,7 +18,7 @@ def search_embedding(search_term):
     :return: The vector representation of the search term.
     """
 
-    vectorizer = Vectorizer()  # Create a Sent2Vec Vectorizer
+    vectorizer = Vectorizer('distilbert-base-multilingual-cased')  # Create a Sent2Vec Vectorizer
     vectorizer.run([search_term])  # Run the vectorization process on the given search term
     return vectorizer.vectors[0].tolist()  # Retrieve the vector representation of the search term
 
