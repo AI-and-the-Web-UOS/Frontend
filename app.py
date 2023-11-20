@@ -77,7 +77,7 @@ def results(search_term):
         result = response.json()  # Parse the JSON response from the search API
         data = result["results"]  # Extract the search results from the API response
         # Render the results page template with the search text and data
-        return render_template('results_new.html', search_text=search_term, data=data)
+        return render_template('results.html', search_text=search_term, data=data)
     except:
         # If there was an error with the API request, redirect back to the search page
         return render_template('search.html')
