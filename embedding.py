@@ -5,7 +5,7 @@ class EmbeddingManager:
     def __init__(self):
         self.query_dict = {}  # Dictionary to store queries that need to be converted
         self.result_dict = {}  # Dictionary to store the resulting vectors
-        self.vectorizer = Vectorizer()
+        self.vectorizer = Vectorizer("distilbert-base-multilingual-cased")
         self.lock = threading.Lock()  # Lock to ensure thread safety
         self.thread = threading.Thread(target=self.run, daemon=True)
         self.thread.start()

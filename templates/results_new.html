@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html data-bs-theme="light" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Findo - Results for "{{search_text}}"</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&amp;display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic&amp;display=swap">
+    <link rel="stylesheet" href="{{ url_for('static', filename='fonts/font-awesome.min.css')}}">
+    <script src="{{ url_for('static', filename='js/date.js')}}"></script>
+    <style>
+        /* Custom style for truncating text to three lines */
+        .three-line-truncate {
+          display: -webkit-box;
+          -webkit-line-clamp: 3; /* Number of lines to display */
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+        }
+      </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg fixed-top navbar-light" id="mainNav">
+        <div class="container"><a class="navbar-brand" href="index.html">FINDO</a><button data-bs-toggle="collapse" data-bs-target="#navbarResponsive" class="navbar-toggler" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><i class="fa fa-bars"></i></button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Back to search</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <header class="masthead" style="height: 200px;">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-10 col-lg-8 mx-auto position-relative">
+                    <div class="d-lg-flex justify-content-lg-center align-items-lg-end site-heading" style="height: 200px;">
+                        <h2>Results for "{{search_text}}"</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 col-lg-8">
+                {% if data %}
+                {% for item in data %}
+                    <div class="post-preview"><a href="{{ item.website }}">
+                            <h2 class="post-title">{{ item.title }}</h2>
+                            <h5 class="three-line-truncate">{{ item.content }}</h5>
+                        </a>
+                        <p id="postMeta_{{ loop.index0 }}" class="post-meta">{{ item.date }}</p>
+                    </div>
+                    <hr>
+                    <script>
+                        // Get the timestamp from the HTML element content
+                        var timestamp = "{{ item.date }}";
+                        timestamp = parseFloat(timestamp);
+                
+                        // Call the function to convert timestamp to date-time
+                        var formattedDateTime = convertTimestampToDateTime(timestamp);
+                
+                        // Update the content of the postMeta element
+                        var postMetaElement = document.getElementById('postMeta_{{ loop.index0 }}');
+                        if (postMetaElement) {
+                          postMetaElement.textContent = formattedDateTime;
+                        }
+                    </script>
+                {% endfor %}
+                {% else %}
+                    <!-- Display a message when no results are found -->
+                    <p>No results found.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-10 col-lg-8 mx-auto">
+                    <ul class="list-inline text-center">
+                        <li class="list-inline-item"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-github fa-stack-1x fa-inverse"></i></span></li>
+                    </ul>
+                    <p class="text-muted copyright">Copyright&nbsp;© Cornelius Wolff,&nbsp;Christine Arnoldt, Jonah Schlie 2023</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="{{ url_for('static', filename='bootstrap/js/bootstrap.min.js' )}}"></script>
+    <script src="{{ url_for('static', filename='js/clean-blog.js')}}"></script>
+</body>
+
+</html>
