@@ -1,4 +1,4 @@
-# Search REST API Server
+# Search Frontend Server
 ## Project for AI and the Web
 This is a simple Flask application that provides two endpoints to search for similar websites based on vector similarity and to update the number of views for a website. It utilizes MongoDB for data storage and retrieval. This project was part of the course "AI and the Web" at Osnabrück University.
 <p align="right">(<a href="#top">back to top</a>)</p>
