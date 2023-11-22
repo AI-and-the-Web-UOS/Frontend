@@ -76,15 +76,11 @@ def results(search_term):
         response = requests.get(URL_SEARCH, json=data)  # Send a GET request to the search API with the vector data
         result = response.json()  # Parse the JSON response from the search API
         data = result["results"]  # Extract the search results from the API response
-        print(search_term)
         # Render the results page template with the search text and data
         return render_template('results.html', search_text=search_term, data=data)
-    except Exception as e:
-        print(f"An error occurred: {e}")
-        return render_template('results.html', search_text=search_term, data=None)
-
-
-
+    except:
+        # If there was an error with the API request, redirect back to the search page
+        return render_template('search.html')
 
 
 @app.route('/submit', methods=['POST'])
