@@ -39,7 +39,10 @@ To distribute the load of handeling user requests and doing the actual rankings 
     .
     │── graphics
     │     └── SearchEngine.png
-    │── searchDatabase
+    │── static
+    │     ├── Views.bson           # Example data for the views table
+    │     └── Website.bson         # Example data for the Website table
+    │── templates
     │     ├── Views.bson           # Example data for the views table
     │     └── Website.bson         # Example data for the Website table
     │── README.md
