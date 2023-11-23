@@ -1,6 +1,6 @@
 # Search Frontend Server
 ## Project for AI and the Web
-This is a simple Flask application that provides two endpoints to search for similar websites based on vector similarity and to update the number of views for a website. It utilizes MongoDB for data storage and retrieval. This project was part of the course "AI and the Web" at Osnabrück University.
+This is a simple Flask application that provides two endpoints, one to display an html template that allows the user to enter a search term and the other to display an html template that displays the results of the search. This frontend server communicates with the backend server via a REST API. This project was part of the course "AI and the Web" at Osnabrück University.
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 ## 📖 Table of Contents
@@ -39,12 +39,10 @@ To distribute the load of handeling user requests and doing the actual rankings 
     .
     │── graphics
     │     └── SearchEngine.png
-    │── static
-    │     ├── Views.bson           # Example data for the views table
-    │     └── Website.bson         # Example data for the Website table
-    │── templates
-    │     ├── Views.bson           # Example data for the views table
-    │     └── Website.bson         # Example data for the Website table
+    │── static                     # static files such as CSS files, JavaScript files and images
+    │── templates                  
+    │     └── search.html          # displays the search form
+    │     └── results.html         # displays the search results
     │── README.md
     │── requirements.txt
     │── commands.txt               # Commands to set up the database
