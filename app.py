@@ -1,3 +1,5 @@
+import traceback
+
 from flask import Flask, render_template, request, redirect, url_for, jsonify
 from sent2vec.vectorizer import Vectorizer
 import requests
@@ -121,6 +123,11 @@ def add_view():
         print(f"An error occurred: {e}")
 
     return "", 200
+
+
+@app.errorhandler(500)
+def internal_error(exception):
+    return "<pre>"+traceback.format_exc()+"</pre>"
 
 
 if __name__ == '__main__':
