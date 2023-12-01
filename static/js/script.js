@@ -1,7 +1,7 @@
 // Wait for the DOM content to be fully loaded before executing the script
 document.addEventListener('DOMContentLoaded', function() {
     // Get all elements with the class 'result-title'
-    var resultLinks = document.getElementsByClassName('result-title');
+    var resultLinks = document.getElementsByClassName('post-link');
 
     // Add a click event listener to each result title link
     for (var i = 0; i < resultLinks.length; i++) {
@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // Get the URL from the 'href' attribute of the clicked link
             var url = this.getAttribute('href');
-
+            
             // Open the URL in a new tab
             window.open(url, '_blank');
 

@@ -16,7 +16,7 @@ This is a simple Flask application that provides two endpoints, one to display a
   - [📎 License](#-license)
 
 ## ❓ Why?
-To distribute the load of handeling user requests and doing the actual rankings of websites, we decided to split the search process in different application. On the one hand, there is the server that handles incoming requests and calculates the vectors. On the other hand, there is the application which has been implemented in this repo, which loads the existing website data from a MongoDB database and matches the entries in this database with the user query, to return optimal results. Lastly there is the web crawler that updates the search index database.
+To distribute the load of handeling user requests and doing the actual rankings of websites, we decided to split the search process in different application. On the one hand, there is the application which has been implemented in this repo that handles incoming requests and calculates the vectors. On the other hand, there is an application, which loads the existing website data from a MongoDB database and matches the entries in this database with the user query, to return optimal results. Lastly there is the web crawler that updates the search index database.
 <br/> 
 <p align="center">
 <img src="graphics/SearchEngine.png" alt="Structure of our search engine" align="middle" width="700" /> 
@@ -26,9 +26,38 @@ To distribute the load of handeling user requests and doing the actual rankings 
 
 ## ✨ Features of the Front-end
 
+Explore the search engine's dynamic processing, facilitated by Flask, converting your queries into vectors in real-time. This ensures a smooth interaction between the frontend and backend, leading to efficient result generation.
+
+The two-screen interface enhances user experience. The first screen is the portal for search queries, while the second screen showcases a curated list of results, providing an intuitive navigation experience.
+
+Engage interactively with search results by clicking on items of interest. This not only grants direct access to content but also contributes crucial data to the backend. This feedback loop actively refines search algorithms, continually improving result accuracy.
+
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 ## 💻 Usage
+
+1. Clone the repository or download the code.
+
+```bash
+git clone https://github.com/AI-and-the-Web-UOS/search.frontend.git
+cd search.frontend
+```
+
+2. Install the required Python packages.
+
+```bash
+pip install requirements.txt
+```
+
+3. Set up your MongoDB server and replace the connection details in the code with your own.
+
+4. Start the Flask application.
+
+```bash
+python app.py
+```
+
+The Flask application will run locally on `http://127.0.0.1:5000/`.
 
 
 <p align="right">(<a href="#top">back to top</a>)</p>
