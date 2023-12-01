@@ -36,9 +36,28 @@ Engage interactively with search results by clicking on items of interest. This 
 
 ## 💻 Usage
 
-Begin your search engine experience on the homepage, where a user-friendly form awaits your queries. Input your search, and watch as the frontend transforms it into vectors, seamlessly sending the processed data to the backend for comprehensive results.
+1. Clone the repository or download the code.
 
-Explore the search outcomes on the second screen, where relevant information based on your input is neatly presented. Click on any result to delve deeper into the content or visit the associated webpage. Each click triggers a second request to the backend, offering valuable insights into user preferences for refining future search outcomes.
+```bash
+git clone https://github.com/AI-and-the-Web-UOS/Frontend/
+cd Frontend
+```
+
+2. Install the required Python packages.
+
+```bash
+pip install requirements.txt
+```
+
+3. Set up your MongoDB server and replace the connection details in the code with your own.
+
+4. Start the Flask application.
+
+```bash
+python server.py
+```
+
+The Flask application will run locally on `http://127.0.0.1:5000/`.
 
 
 <p align="right">(<a href="#top">back to top</a>)</p>
