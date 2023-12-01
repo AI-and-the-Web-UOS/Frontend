@@ -7,5 +7,5 @@ function convertTimestampToDateTime(timestamp) {
         day: "numeric",
       };
     var date = new Date(timestamp * 1000);
-    return date.toLocaleString(undefined, options); // Adjust this as per your desired date-time format
+    return date.toLocaleString("en-US", options); // Adjust this as per your desired date-time format
 }
