@@ -39,8 +39,8 @@ Engage interactively with search results by clicking on items of interest. This 
 1. Clone the repository or download the code.
 
 ```bash
-git clone https://github.com/AI-and-the-Web-UOS/Frontend/
-cd Frontend
+git clone https://github.com/AI-and-the-Web-UOS/search.frontend.git
+cd search.frontend
 ```
 
 2. Install the required Python packages.
@@ -54,7 +54,7 @@ pip install requirements.txt
 4. Start the Flask application.
 
 ```bash
-python server.py
+python app.py
 ```
 
 The Flask application will run locally on `http://127.0.0.1:5000/`.
