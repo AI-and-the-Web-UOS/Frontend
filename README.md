@@ -26,9 +26,19 @@ To distribute the load of handeling user requests and doing the actual rankings 
 
 ## ✨ Features of the Front-end
 
+Explore the search engine's dynamic processing, facilitated by Flask, converting your queries into vectors in real-time. This ensures a smooth interaction between the frontend and backend, leading to efficient result generation.
+
+The two-screen interface enhances user experience. The first screen is the portal for search queries, while the second screen showcases a curated list of results, providing an intuitive navigation experience.
+
+Engage interactively with search results by clicking on items of interest. This not only grants direct access to content but also contributes crucial data to the backend. This feedback loop actively refines search algorithms, continually improving result accuracy.
+
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 ## 💻 Usage
+
+Begin your search engine experience on the homepage, where a user-friendly form awaits your queries. Input your search, and watch as the frontend transforms it into vectors, seamlessly sending the processed data to the backend for comprehensive results.
+
+Explore the search outcomes on the second screen, where relevant information based on your input is neatly presented. Click on any result to delve deeper into the content or visit the associated webpage. Each click triggers a second request to the backend, offering valuable insights into user preferences for refining future search outcomes.
 
 
 <p align="right">(<a href="#top">back to top</a>)</p>
